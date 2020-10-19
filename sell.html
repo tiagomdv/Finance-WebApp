@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+
+    {% if not userid %}
+    <form action="/sell" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="shares" placeholder="Number Shares" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit" name="submit" value="buy">Sell</button>
+    </form>
+    {% endif %}
+
+    {% if userid %}
+    <header>
+        <a href="/" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Return</a>
+
+        <div class="text-center" style="margin: 50px 0 0 0">
+            <h5>Congratulations! You´ve just sold {{ shares }} shares of {{ name }}({{ symbol }}) stock.</h2>
+        </div>
+    </header>
+    {% endif %}
+
+    {% if numbershares %}
+    <header>
+        <div class="text-center" style="margin: 50px 0 0 0">
+            <h5>Not enough shares. You have {{ shares }} and your orders requires {{ numbershares }} {{ symbol }} stock to continue.</h2>
+        </div>
+    </header>
+    {% endif %}
+
+{% endblock %}

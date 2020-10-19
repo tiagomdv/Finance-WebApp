@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+
+    {% if not userid %}
+    <form action="/buy" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text" value="{{ symbol }}">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="shares" placeholder="Number Shares" type="text" value="{{ shares }}">
+        </div>
+        <button class="btn btn-primary" type="submit" name="submit" value="buy">Buy</button>
+        <button class="btn btn-primary" type="submit" name="submit" value ="check">Check Quote</button>
+    </form>
+    {% endif %}
+
+    {% if companyName %}
+    <header>
+        <div class="text-center" style="margin: 50px 0 0 0">
+            <h5>{{ symbol }}: The latest price of {{ companyName }} stock is {{ stockPrice }}.</h2>
+        </div>
+    </header>
+    {% endif %}
+
+    {% if userid %}
+    <header>
+        <a href="/" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Return</a>
+
+        <div class="text-center" style="margin: 50px 0 0 0">
+            <h5>Congratulations! You´ve just bought {{ shares }} shares of {{ name }}({{ symbol }}) stock.</h2>
+        </div>
+    </header>
+    {% endif %}
+
+    {% if total %}
+    <header>
+        <div class="text-center" style="margin: 50px 0 0 0">
+            <h5>Not enough cash. You have {{ cash }} USD and your orders requires {{ total }} USD to continue.</h2>
+        </div>
+    </header>
+    {% endif %}
+
+{% endblock %}

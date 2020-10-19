@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Company Name</th>
+                <th scope="col"># Shares</th>
+                <th scope="col">Current Price</th>
+                <th scope="col">Current Value</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for row in status %}
+
+                {% if row["shares"] == 0 %}
+
+                {% else %}
+
+                {% if row["symbol"] == "Total Value" %}
+
+                <tr style="background-color: rgb(200, 200, 200)">
+                    <th scope="col">{{ row["symbol"] }}</th>
+                    <td>{{ row["name"] }}</td>
+                    <td>{{ row["shares"] }}</td>
+                    <td>{{ row["price"] }}</td>
+                    <th scope="col">{{ row["value"] }}</td>
+                </tr>
+
+                {% else %}
+
+                <tr>
+                    <th scope="col">{{ row["symbol"] }}</th>
+                    <td>{{ row["name"] }}</td>
+                    <td>{{ row["shares"] }}</td>
+                    <td>{{ row["price"] }}</td>
+                    <td>{{ row["value"] }}</td>
+                </tr>
+
+                {% endif %}
+
+                {% endif %}
+
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}
